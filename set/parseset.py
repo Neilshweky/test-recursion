@@ -39,13 +39,13 @@ class SetParser:
 
       cardObj = SetCard.cardForLink(id, int(linkId))
 
-      print(cardObj)
+      # print(cardObj)
       cards.append(cardObj)
 
-    print(cards)
+    # print(cards)
     board = SetBoard(cards)
     sets = board.getSets()
-    for set in sets:
-      print(str(set[0]) + " ... " + str(set[1]) + " ... " + str(set[2]))
+    # for set in sets:
+    #   print(str(set[0]) + " ... " + str(set[1]) + " ... " + str(set[2]))
 
     return sets
