@@ -40,8 +40,9 @@ class SetCard:
       shape = None
       quantity = None
 
-      linkId = linkId - 1
-      if linkId < 28:
+      if linkId == 0:
+        fill = Fill.STRIPED
+      elif linkId < 28:
         fill = Fill.SOLID
       elif linkId > 54:
         fill = Fill.EMPTY
@@ -49,7 +50,9 @@ class SetCard:
         fill = Fill.STRIPED
 
       linkId = linkId % 27
-      if linkId < 9:
+      if linkId == 0:
+        shape = Shape.OVAL
+      elif linkId < 10:
         shape = Shape.SQUIGGLE
       elif linkId > 18:
         shape = Shape.OVAL
@@ -58,21 +61,25 @@ class SetCard:
 
       linkId = linkId % 9
 
-      if linkId < 3:
+      if linkId == 0:
+        color = Color.GREEN
+      elif linkId < 4:
         color = Color.RED
-      elif linkId > 5:
+      elif linkId > 6:
         color = Color.GREEN
       else:
         color = Color.PURPLE
 
-      linkId = (linkId % 3) + 1
-      if linkId == 1:
+      print("id: " + id + ", linkId: " + str(linkId) + ", color: " + color.name + ", fill: " + fill.name + ", shape: " + shape.name + ", quantity: " + str(linkId % 3) )
+      linkId = (linkId % 3)
+      if linkId == 0:
+        quantity = Quantity.THREE
+      elif linkId == 1:
         quantity = Quantity.ONE
       elif linkId == 2:
         quantity = Quantity.TWO
-      else:
-        quantity = Quantity.THREE
 
+      # print("SetCard(" + id + ", " + color.name + ", " + quantity.name + ", " + shape.name +", " + fill.name + ")")
       return SetCard(id, color, quantity, shape, fill)
 
     # a class method called verify
@@ -216,7 +223,6 @@ class SetBoard:
         ids.sort()
         if ids[0] not in found or not found[ids[0]].get(ids[1]):
           sets.append([pair[0], pair[1], card3])
-
 
           row = {}
           if ids[0] in found:

@@ -49,3 +49,5 @@ class SetParser:
     #   print(str(set[0]) + " ... " + str(set[1]) + " ... " + str(set[2]))
 
     return sets
+
+# SetParser.parseTodays()

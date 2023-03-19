@@ -3,12 +3,11 @@ from parseset import SetParser
 import time
 
 def run(playwright):
-    browser = playwright.chromium.connect_over_cdp("ws://127.0.0.1:9222/devtools/browser/d47090d6-5040-4d26-b89f-e8d23aa31660")
+    browser = playwright.chromium.connect_over_cdp("ws://127.0.0.1:9222/devtools/browser/4c6fed30-30c3-4cf4-a925-dabff8214b93")
     default_context = browser.contexts[0]
     page = default_context.new_page()
-    page.goto("https://www.setgame.com/set/puzzle")
-
     sets = SetParser.parseTodays()
+    page.goto("https://www.setgame.com/set/puzzle")
 
     for set in sets:
       page.evaluate("""() => {{
